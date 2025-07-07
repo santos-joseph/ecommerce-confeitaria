@@ -46,7 +46,7 @@ export function CartPage() {
                 {/* Coluna da Esquerda: Imagem e Infos */}
                 <div className="flex items-center gap-4">
                   <Image
-                    src={item.imagem || "/placeholder.svg"}
+                    src={item.imagem[0] || "/placeholder.svg"}
                     alt={item.titulo}
                     width={80}
                     height={80}

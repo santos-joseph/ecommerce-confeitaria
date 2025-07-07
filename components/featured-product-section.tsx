@@ -6,7 +6,7 @@ import { getProductBySlug } from "@/lib/products"
 import { CookieIcon } from "lucide-react"
 
 export function FeaturedProductSection() {
-  const featuredProduct = getProductBySlug("ferrero-rocher")
+  const featuredProduct = getProductBySlug("cookie-ferrero-rocher")
 
   if (!featuredProduct) return null
 
@@ -18,7 +18,7 @@ export function FeaturedProductSection() {
             <div className="md:w-1/2 p-2">
               <div className="relative overflow-hidden rounded-2xl">
                 <Image
-                  src={featuredProduct.imagem || "/placeholder.svg"}
+                  src={featuredProduct.imagem[0] || "/placeholder.svg"}
                   alt={featuredProduct.titulo}
                   width={600}
                   height={600}
@@ -26,7 +26,7 @@ export function FeaturedProductSection() {
                 />
                 <div className="absolute top-4 left-4">
                   <Badge className="bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold px-3 py-1 animate-pulse">
-                    ⭐ Especial
+                    Especial
                   </Badge>
                 </div>
               </div>

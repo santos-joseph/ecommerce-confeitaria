@@ -8,10 +8,19 @@ export const metadata: Metadata = {
   description:
     "Explore nossa linha completa de bolos, cookies e doces artesanais. Encontre o doce perfeito para sua ocasião especial.",
   openGraph: {
+    images: [
+      {
+        url: 'julogo.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Confeitaria Ju Montanaro - Produtos',
+      },
+    ],
     title: "Produtos - Confeitaria Ju Montanaro",
     description: "Explore nossa linha completa de bolos, cookies e doces artesanais.",
   },
 }
+
 
 interface ProductsPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>

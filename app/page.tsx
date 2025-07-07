@@ -11,6 +11,14 @@ export const metadata: Metadata = {
     "Descubra os melhores bolos e cookies artesanais. Cada doce é feito à mão com ingredientes selecionados e muito carinho.",
   openGraph: {
     title: "Confeitaria Ju Montanaro - Bolos e Cookies Artesanais",
+    images: [
+      {
+        url: 'julogo.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Confeitaria Ju Montanaro - Produtos',
+      },
+    ],
     description:
       "Descubra os melhores bolos e cookies artesanais. Cada doce é feito à mão com ingredientes selecionados e muito carinho.",
   },

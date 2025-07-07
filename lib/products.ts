@@ -1,8 +1,10 @@
+import { List } from "postcss/lib/list"
+
 export interface Product {
   id: number
   titulo: string
   slug: string
-  imagem: string
+  imagem: string[]
   descricao: string
   preco?: number
   categoria: string
@@ -132,7 +134,13 @@ const rawProducts = [
   },
   {
     titulo: "Bolo de Laranja",
-    imagem: "",
+    imagem: [
+      "/produtos/bolo-de-laranja/1.jpg",
+      "/produtos/bolo-de-laranja/2.jpg",
+      "/produtos/bolo-de-laranja/3.jpg",
+      "/produtos/bolo-de-laranja/4.jpg",
+      "/produtos/bolo-de-laranja/5.jpg",
+    ],
     descricao: "Massa fofinha com suco natural de laranja, leve toque cítrico e aroma fresco.",
     preco: 40.0,
     categoria: "Bolos",
@@ -288,7 +296,7 @@ const rawProducts = [
   },
   {
     titulo: "Torta de Banana Nevada",
-    imagem: "",
+    imagem: [],
     descricao:
       "Feita com banana caramelizada e doce de leite, cobertos com um chocolate branco leve e finalizados com aquele toque especial de açúcar caramelizado.",
     preco: 19.9,
@@ -307,19 +315,32 @@ function createSlug(title: string): string {
     .trim()
 }
 
-export const productsData: Product[] = rawProducts.map((product, index) => ({
-  id: index + 1,
-  titulo: product.titulo,
-  slug: createSlug(product.titulo),
-  imagem: `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
-  descricao: product.descricao,
-  preco: product.preco,
-  categoria: product.categoria,
-  destaque: [1, 3, 5, 14, 16, 31, 37].includes(index + 1), // Alguns produtos em destaque
-  variacoes_preco: (product as any).variacoes_preco,
-  ingredientes: generateIngredients(product.titulo, product.categoria),
-  tags: generateTags(product.titulo, product.descricao),
-}))
+export const productsData: Product[] = rawProducts.map((product, index) => {
+  const imagensDoProduto =
+    Array.isArray(product.imagem) && product.imagem.length > 0
+      ? product.imagem
+      : [
+        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
+        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
+        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
+        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
+        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
+      ];
+
+  return {
+    id: index + 1,
+    titulo: product.titulo,
+    slug: createSlug(product.titulo),
+    imagem: imagensDoProduto,
+    descricao: product.descricao,
+    preco: product.preco,
+    categoria: product.categoria,
+    destaque: [1, 3, 5, 14, 16, 31, 37].includes(index + 1),
+    variacoes_preco: (product as any).variacoes_preco,
+    ingredientes: generateIngredients(product.titulo, product.categoria),
+    tags: generateTags(product.titulo, product.descricao),
+  };
+});
 
 function generateIngredients(titulo: string, categoria: string): string[] {
   const baseIngredients = {

@@ -19,7 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <Link href={`/produtos/${product.slug}`}>
         <div className="overflow-hidden">
           <Image
-            src={product.imagem || "/placeholder.svg"}
+            src={product.imagem[0] || "/placeholder.svg"}
             alt={product.titulo}
             width={400}
             height={300}

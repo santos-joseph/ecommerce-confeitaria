@@ -1,19 +1,21 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Poppins, Dancing_Script } from "next/font/google"
-import "./globals.css"
-import { CartProvider } from "@/components/cart-provider"
-import { Navbar } from "@/components/navbar"
+import type React from "react";
+import type { Metadata } from "next";
+import { Poppins, Dancing_Script } from "next/font/google";
+import "./globals.css";
+import { CartProvider } from "@/components/cart-provider";
+import { Navbar } from "@/components/navbar";
+import { Heart } from "lucide-react";
 
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
   weight: ["300", "400", "500", "600", "700", "800"],
-})
+});
+
 const dancing = Dancing_Script({
   subsets: ["latin"],
   variable: "--font-dancing",
-})
+});
 
 export const metadata: Metadata = {
   title: {
@@ -31,14 +33,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://confeitaria-ju-montanaro.vercel.app"),
+  metadataBase: new URL("https://jumontanaro.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://confeitaria-ju-montanaro.vercel.app",
+    url: "https://jumontanaro.vercel.app",
     title: "Confeitaria Ju Montanaro - Bolos e Cookies Artesanais",
     description:
       "Confeitaria artesanal especializada em bolos, cookies e doces únicos. Feitos com amor e ingredientes selecionados.",
@@ -61,39 +63,26 @@ export const metadata: Metadata = {
     },
   },
   generator: 'v0.dev'
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${poppins.variable} ${dancing.variable} font-poppins min-h-screen`}
-      >
+      <body className={`${poppins.variable} ${dancing.variable} font-poppins`}>
         <CartProvider>
           <Navbar />
           <main>{children}</main>
-          <footer className="bg-gradient-to-r from-pink-100 to-rose-100 text-gray-700 mt-16 border-t border-pink-200">
+          <footer className="bg-gradient-to-r from-pink-100 to-rose-100 text-gray-700 font-medium border-t border-pink-200" role="contentinfo">
             <div className="container mx-auto px-4 py-12 text-center">
-              <p className="font-dancing text-2xl text-pink-800 mb-6">Feito com amor para adoçar seus dias</p>
+              <p className="text-2xl text-pink-800 mb-6">Feito com <span className="text-pink rounded-full px-2 border-2 border-pink-600 bg-pink-200"><Heart className="inline-block" /> amor</span> para adoçar seus dias</p>
               <div className="flex justify-center space-x-8 mb-6">
-                <a href="/" className="hover:text-pink-600 transition-colors duration-300 font-medium">
-                  Início
-                </a>
-                <a href="/produtos" className="hover:text-pink-600 transition-colors duration-300 font-medium">
-                  Produtos
-                </a>
-                <a
-                  href="https://wa.me/5519987382375"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-pink-600 transition-colors duration-300 font-medium"
-                >
-                  WhatsApp
-                </a>
+                <a href="/" className="hover:text-pink-600 transition-colors duration-300 font-medium">Início</a>
+                <a href="/produtos" className="hover:text-pink-600 transition-colors duration-300 font-medium">Produtos</a>
+                <a href="https://wa.me/5519987382375" target="_blank" rel="noopener noreferrer" className="hover:text-pink-600 transition-colors duration-300 font-medium">WhatsApp</a>
               </div>
               <p className="text-sm opacity-75">
                 &copy; {new Date().getFullYear()} Confeitaria Ju Montanaro. Todos os direitos reservados.
@@ -103,5 +92,5 @@ export default function RootLayout({
         </CartProvider>
       </body>
     </html>
-  )
+  );
 }

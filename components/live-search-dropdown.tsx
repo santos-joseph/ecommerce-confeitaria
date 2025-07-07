@@ -32,30 +32,28 @@ export function LiveSearchDropdown({ isOpen, searchQuery, onClose }: LiveSearchD
       <div className="p-4">
         {searchQuery.trim() === "" ? (
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4 font-dancing">✨ Produtos em Destaque</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4"> Produtos em Destaque</h3>
             <div className="space-y-3">
               {results.map((product, index) => (
                 <div
                   key={product.id}
                   className="animate-slide-up"
                   style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={onClose}
                 >
-                  <MobileProductItem product={product} />
+                  <MobileProductItem product={product} onClose={onClose} />
                 </div>
               ))}
             </div>
           </div>
         ) : results.length === 0 ? (
           <div className="text-center py-8">
-            <div className="text-4xl mb-3 animate-bounce">😔</div>
             <p className="text-gray-500 mb-2">Nenhum produto encontrado para "{searchQuery}"</p>
             <p className="text-gray-400 text-sm">Tente buscar por "cookie", "bolo" ou "chocolate"</p>
           </div>
         ) : (
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4 font-dancing">
-              🔍 Resultados para "{searchQuery}"
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Resultados para "{searchQuery}"
             </h3>
             <div className="space-y-3">
               {results.map((product, index) => (
@@ -65,7 +63,7 @@ export function LiveSearchDropdown({ isOpen, searchQuery, onClose }: LiveSearchD
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={onClose}
                 >
-                  <MobileProductItem product={product} />
+                  <MobileProductItem product={product} onClose={onClose} />
                 </div>
               ))}
             </div>
@@ -81,13 +79,13 @@ export function LiveSearchDropdown({ isOpen, searchQuery, onClose }: LiveSearchD
   )
 }
 
-function MobileProductItem({ product }: { product: any }) {
+function MobileProductItem({ product, onClose }: { product: any, onClose: () => void }) {
   return (
-    <Link href={`/produtos/${product.slug}`}>
+    <a href={`/produtos/${product.slug}`} onClick={onClose}>
       <div className="flex items-center space-x-3 p-3 bg-white rounded-xl border border-pink-100 hover:shadow-lg transition-all duration-300 group">
         <div className="relative w-16 h-16 flex-shrink-0 overflow-hidden rounded-lg">
           <Image
-            src={product.imagem || "/placeholder.svg"}
+            src={product.imagem[0] || "/placeholder.svg"}
             alt={product.titulo}
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -106,6 +104,6 @@ function MobileProductItem({ product }: { product: any }) {
           </div>
         </div>
       </div>
-    </Link>
+    </a>
   )
 }
