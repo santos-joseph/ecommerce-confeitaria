@@ -95,7 +95,6 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           </Link>
         </Button>
       </div>
-
       <div className="grid md:grid-cols-2 gap-12 items-start">
         {/* Coluna da Imagem / Carrossel */}
         <div className="space-y-4">

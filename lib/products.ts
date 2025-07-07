@@ -113,7 +113,13 @@ const rawProducts = [
   },
   {
     titulo: "Bolo Mesclado",
-    imagem: "",
+    imagem: [
+      "/produtos/bolo-mesclado/1.jpg",
+      "/produtos/bolo-mesclado/2.jpg",
+      "/produtos/bolo-mesclado/3.jpg",
+      "/produtos/bolo-mesclado/4.jpg",
+      "/produtos/bolo-mesclado/5.jpg",
+    ],
     descricao: "Massa macia e saborosa com cobertura dupla irresistível: brigadeiro cremoso e leite Ninho.",
     preco: 45.0,
     categoria: "Bolos",
@@ -127,7 +133,13 @@ const rawProducts = [
   },
   {
     titulo: "Bolo de Cenoura com Brigadeiro",
-    imagem: "",
+    imagem: [
+      "/produtos/bolo-de-cenoura/1.jpg",
+      "/produtos/bolo-de-cenoura/2.jpg",
+      "/produtos/bolo-de-cenoura/3.jpg",
+      "/produtos/bolo-de-cenoura/4.jpg",
+      "/produtos/bolo-de-cenoura/5.jpg",
+    ],
     descricao: "Massa fofinha e vibrante de cenoura com cobertura generosa de brigadeiro caseiro, bem cremoso.",
     preco: 45.5,
     categoria: "Bolos",
@@ -147,7 +159,13 @@ const rawProducts = [
   },
   {
     titulo: "Bolo de Paçoca",
-    imagem: "",
+    imagem: [
+      "/produtos/bolo-de-pacoca/1.jpg",
+      "/produtos/bolo-de-pacoca/2.jpg",
+      "/produtos/bolo-de-pacoca/3.jpg",
+      "/produtos/bolo-de-pacoca/4.jpg",
+      "/produtos/bolo-de-pacoca/5.jpg",
+    ],
     descricao: "Massa leve e saborosa, coberta com creme de paçoca bem cremoso.",
     preco: 40.0,
     categoria: "Bolos",
