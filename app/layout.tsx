@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     default: "Confeitaria Ju Montanaro - Bolos e Cookies Artesanais",
     template: "%s | Confeitaria Ju Montanaro",
   },
+  icons: {
+    icon: "/favicon.png",
+  },
   description:
     "Confeitaria artesanal especializada em bolos, cookies e doces únicos. Feitos com amor e ingredientes selecionados para adoçar seus momentos especiais.",
   keywords: ["confeitaria", "bolos artesanais", "cookies", "doces", "encomendas", "festa", "aniversário"],
@@ -40,6 +43,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
+    images: [
+      {
+        url: '/julogo.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Confeitaria Ju Montanaro - Produtos',
+      },
+    ],
     url: "https://jumontanaro.vercel.app",
     title: "Confeitaria Ju Montanaro - Bolos e Cookies Artesanais",
     description:
@@ -75,7 +86,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} ${dancing.variable} font-poppins`}>
         <CartProvider>
           <Navbar />
-          <main>{children}</main>
+          <main className="">{children}</main>
           <footer className="bg-gradient-to-r from-pink-100 to-rose-100 text-gray-700 font-medium border-t border-pink-200" role="contentinfo">
             <div className="container mx-auto px-4 py-12 text-center">
               <p className="text-2xl text-pink-800 mb-6">Feito com <span className="text-pink rounded-full px-2 border-2 border-pink-600 bg-pink-200"><Heart className="inline-block" /> amor</span> para adoçar seus dias</p>

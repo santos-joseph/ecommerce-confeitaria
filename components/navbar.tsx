@@ -1,6 +1,6 @@
 "use client";
 
-import type React from "react";
+import React from "react";
 
 import Image from "next/image";
 
@@ -8,7 +8,7 @@ import Link from "next/link";
 
 import { useState, useEffect, useRef } from "react";
 
-import { Search, ShoppingCart, Menu, X, Heart } from "lucide-react";
+import { Search, ShoppingCart, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -31,11 +31,18 @@ export function Navbar() {
 
   const [isMobileSearchFocused, setIsMobileSearchFocused] = useState(false);
 
+  const [isClient, setIsClient] = useState(false);
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   const searchRef = useRef<HTMLDivElement>(null);
 
   const mobileSearchRef = useRef<HTMLDivElement>(null);
+
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -132,13 +139,13 @@ export function Navbar() {
             <div className="hidden md:flex items-center space-x-6">
               <Link
                 href="/carrinho"
-                className="relative flex items-center space-x-2 text-gray-700 hover:text-pink-800 transition-all duration-300 group"
+                className="relative flex items-center space-x-2 text-gray-700 hover:text-pink-800 transition-all duration-300 "
               >
                 <div className="relative">
-                  <ShoppingCart className="h-6 w-6 group-hover:animate-bounce" />
+                  <ShoppingCart className="h-6 w-6" />
 
-                  {totalItems > 0 && (
-                    <span className="absolute -top-2 -right-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center animate-pulse font-bold shadow-lg">
+                  {isClient && totalItems > 0 && (
+                    <span className="absolute -top-2 -right-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold shadow-lg">
                       {totalItems}
                     </span>
                   )}
@@ -234,14 +241,16 @@ export function Navbar() {
                 </Link>
 
                 <div className="border-t border-pink-200 pt-3 mt-3">
+
                   <Link
                     href="/carrinho"
                     className="flex items-center space-x-3 text-gray-700 hover:text-pink-800 transition-colors p-2 rounded-lg hover:bg-pink-50 font-medium"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <ShoppingCart className="h-5 w-5" />
-                    <span>Meu Carrinho ({totalItems})</span>
+                    <span>Meu Carrinho {isClient && `(${totalItems})`}</span>
                   </Link>
+
                 </div>
               </div>
             </div>
