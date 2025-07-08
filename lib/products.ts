@@ -19,9 +19,15 @@ export interface Product {
 
 const rawProducts = [
   {
-    titulo: "Cookie Nutella Lovers",
-    imagem: "",
-    descricao: "Clássico amanteigado com recheio generoso de Nutella cremosa.",
+    titulo: "Cookie Red Velvet com Brigadeiro de Ninho",
+    imagem: [
+      "produtos/cookie-red-velvet/1.jpg",
+      "produtos/cookie-red-velvet/2.jpg",
+      "produtos/cookie-red-velvet/3.jpg",
+      "produtos/cookie-red-velvet/4.jpg",
+      "produtos/cookie-red-velvet/5.jpg",
+    ],
+    descricao: "Massa vermelha intensa com recheio de brigadeiro de leite Ninho.",
     preco: 12.5,
     categoria: "Cookies",
   },
@@ -39,23 +45,42 @@ const rawProducts = [
     categoria: "Cookies",
   },
   {
+    titulo: "Cookie Banana Nevada",
+    imagem: [
+      "/produtos/cookie-de-banana-nevada/1.jpg",
+      "/produtos/cookie-de-banana-nevada/2.jpg",
+      "/produtos/cookie-de-banana-nevada/3.jpg",
+      "/produtos/cookie-de-banana-nevada/4.jpg",
+    ],
+    descricao: "Massa amanteigada com pedacinhos de banana e recheio cremoso de leite Ninho.",
+    preco: 14.0,
+    categoria: "Cookies",
+  },
+  {
+    titulo: "Cookie de Cacau Black com Ninho",
+    imagem: [
+      "/produtos/cookie-de-cacau-black/1.jpg",
+      "/produtos/cookie-de-cacau-black/2.jpg",
+      "/produtos/cookie-de-cacau-black/3.jpg",
+      "/produtos/cookie-de-cacau-black/4.jpg",
+      "/produtos/cookie-de-cacau-black/5.jpg",
+    ],
+    descricao: "Massa de cacau puro com recheio de brigadeiro de leite Ninho.",
+    preco: 12.5,
+    categoria: "Cookies",
+  },
+  {
+    titulo: "Cookie Nutella Lovers",
+    imagem: "",
+    descricao: "Clássico amanteigado com recheio generoso de Nutella cremosa.",
+    preco: 12.5,
+    categoria: "Cookies",
+  },
+  {
     titulo: "Cookie Indeciso",
     imagem: "",
     descricao: "Massa dupla (clara e escura) com recheio de Nutella branca e tradicional.",
     preco: 15.0,
-    categoria: "Cookies",
-  },
-  {
-    titulo: "Cookie Red Velvet com Brigadeiro de Ninho",
-    imagem: [
-      "produtos/cookie-red-velvet/1.jpg",
-      "produtos/cookie-red-velvet/2.jpg",
-      "produtos/cookie-red-velvet/3.jpg",
-      "produtos/cookie-red-velvet/4.jpg",
-      "produtos/cookie-red-velvet/5.jpg",
-    ],
-    descricao: "Massa vermelha intensa com recheio de brigadeiro de leite Ninho.",
-    preco: 12.5,
     categoria: "Cookies",
   },
   {
@@ -71,18 +96,6 @@ const rawProducts = [
     imagem: "",
     descricao: "Massa de cacau 100% com recheio quente e intenso de Nutella.",
     preco: 12.5,
-    categoria: "Cookies",
-  },
-  {
-    titulo: "Cookie Banana Nevada",
-    imagem: [
-      "/produtos/cookie-de-banana-nevada/1.jpg",
-      "/produtos/cookie-de-banana-nevada/2.jpg",
-      "/produtos/cookie-de-banana-nevada/3.jpg",
-      "/produtos/cookie-de-banana-nevada/4.jpg",
-    ],
-    descricao: "Massa amanteigada com pedacinhos de banana e recheio cremoso de leite Ninho.",
-    preco: 14.0,
     categoria: "Cookies",
   },
   {
@@ -111,19 +124,6 @@ const rawProducts = [
     imagem: "",
     descricao: "Massa de chocolate recheada com brigadeiro gourmet e gotas de chocolate belga.",
     preco: 13.0,
-    categoria: "Cookies",
-  },
-  {
-    titulo: "Cookie de Cacau Black com Ninho",
-    imagem: [
-      "/produtos/cookie-de-cacau-black/1.jpg",
-      "/produtos/cookie-de-cacau-black/2.jpg",
-      "/produtos/cookie-de-cacau-black/3.jpg",
-      "/produtos/cookie-de-cacau-black/4.jpg",
-      "/produtos/cookie-de-cacau-black/5.jpg",
-    ],
-    descricao: "Massa de cacau puro com recheio de brigadeiro de leite Ninho.",
-    preco: 12.5,
     categoria: "Cookies",
   },
   {
