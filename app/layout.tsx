@@ -89,7 +89,7 @@ export default function RootLayout({
           <main className="">{children}</main>
           <footer className="bg-gradient-to-r from-pink-100 to-rose-100 text-gray-700 font-medium border-t border-pink-200" role="contentinfo">
             <div className="container mx-auto px-4 py-12 text-center">
-              <p className="text-2xl text-pink-800 mb-6">Feito com <span className="text-pink rounded-full px-2 border-2 border-pink-600 bg-pink-200"><Heart className="inline-block" /> amor</span> para adoçar seus dias</p>
+              <p className="text-xl text-pink-800 mb-6">Feito com <span className="text-pink rounded-full px-2 border-2 border-pink-600 bg-pink-200"><Heart className="inline-block" /> amor</span> para adoçar seus dias</p>
               <div className="flex justify-center space-x-8 mb-6">
                 <a href="/" className="hover:text-pink-600 transition-colors duration-300 font-medium">Início</a>
                 <a href="/produtos" className="hover:text-pink-600 transition-colors duration-300 font-medium">Produtos</a>

@@ -85,7 +85,7 @@ function MobileProductItem({ product, onClose }: { product: any, onClose: () => 
       <div className="flex items-center space-x-3 p-3 bg-white rounded-xl border border-pink-100 hover:shadow-lg transition-all duration-300 group">
         <div className="relative w-16 h-16 flex-shrink-0 overflow-hidden rounded-lg">
           <Image
-            src={product.imagem[0] || "/placeholder.svg"}
+            src={product.imagem[0] || "//sem-foto.jpg"}
             alt={product.titulo}
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-500"

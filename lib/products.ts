@@ -27,7 +27,12 @@ const rawProducts = [
   },
   {
     titulo: "Cookie de Prestígio",
-    imagem: "",
+    imagem: [
+      "/produtos/cookie-de-prestigio/1.jpg",
+      "/produtos/cookie-de-prestigio/2.jpg",
+      "/produtos/cookie-de-prestigio/3.jpg",
+      "/produtos/cookie-de-prestigio/4.jpg",
+    ],
     descricao:
       "Cookie de cacau com gotas de chocolate ao leite, recheado com brigadeiro de coco mega cremoso, e claro, com muito coco.",
     preco: 12.5,
@@ -64,7 +69,12 @@ const rawProducts = [
   },
   {
     titulo: "Cookie Banana Nevada",
-    imagem: "",
+    imagem: [
+      "/produtos/cookie-de-banana-nevada/1.jpg",
+      "/produtos/cookie-de-banana-nevada/2.jpg",
+      "/produtos/cookie-de-banana-nevada/3.jpg",
+      "/produtos/cookie-de-banana-nevada/4.jpg",
+    ],
     descricao: "Massa amanteigada com pedacinhos de banana e recheio cremoso de leite Ninho.",
     preco: 14.0,
     categoria: "Cookies",
@@ -126,7 +136,13 @@ const rawProducts = [
   },
   {
     titulo: "Bolo de Iogurte com Limão",
-    imagem: "",
+    imagem: [
+      "/produtos/bolo-de-iorgute-com-limao/1.jpg",
+      "/produtos/bolo-de-iorgute-com-limao/2.jpg",
+      "/produtos/bolo-de-iorgute-com-limao/3.jpg",
+      "/produtos/bolo-de-iorgute-com-limao/4.jpg",
+      "/produtos/bolo-de-iorgute-com-limao/5.jpg",
+    ],
     descricao: "Bolo com massa de iogurte, leve e úmida, finalizado com cobertura cremosa de limão.",
     preco: 35.5,
     categoria: "Bolos",
@@ -172,7 +188,13 @@ const rawProducts = [
   },
   {
     titulo: "Bolo de Leite Ninho",
-    imagem: "",
+    imagem: [
+      "/produtos/bolo-de-ninho/1.jpg",
+      "/produtos/bolo-de-ninho/2.jpg",
+      "/produtos/bolo-de-ninho/3.jpg",
+      "/produtos/bolo-de-ninho/4.jpg",
+      "/produtos/bolo-de-ninho/5.jpg",
+    ],
     descricao:
       "Massa leve e fofinha com cobertura cremosa de leite Ninho, finalizada com uma delicada camada de leite em pó.",
     preco: 45.0,
@@ -285,7 +307,13 @@ const rawProducts = [
   },
   {
     titulo: "Caneca de Cookie",
-    imagem: "",
+    imagem: [
+      "/produtos/caneca-de-cookie/1.jpg",
+      "/produtos/caneca-de-cookie/2.jpg",
+      "/produtos/caneca-de-cookie/3.jpg",
+      "/produtos/caneca-de-cookie/4.jpg",
+      "/produtos/caneca-de-cookie/5.jpg",
+    ],
     descricao:
       "Feita com massa de cookie crocante e recheada com uma generosa camada de chocolate por dentro, nossa caneca comestível é perfeita para servir café, leite ou chocolate quente.",
     preco: 12.5,
@@ -338,11 +366,11 @@ export const productsData: Product[] = rawProducts.map((product, index) => {
     Array.isArray(product.imagem) && product.imagem.length > 0
       ? product.imagem
       : [
-        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
-        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
-        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
-        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
-        `/placeholder.svg?height=400&width=400&text=${encodeURIComponent(product.titulo)}`,
+        `/sem-foto.jpg`,
+        `/sem-foto.jpg`,
+        `/sem-foto.jpg`,
+        `/sem-foto.jpg`,
+        `/sem-foto.jpg`,
       ];
 
   return {
@@ -353,7 +381,7 @@ export const productsData: Product[] = rawProducts.map((product, index) => {
     descricao: product.descricao,
     preco: product.preco,
     categoria: product.categoria,
-    destaque: [1, 3, 5, 14, 16, 31, 37].includes(index + 1),
+    destaque: [4, 3, 5, 14, 16, 31, 37].includes(index + 1),
     variacoes_preco: (product as any).variacoes_preco,
     ingredientes: generateIngredients(product.titulo, product.categoria),
     tags: generateTags(product.titulo, product.descricao),
