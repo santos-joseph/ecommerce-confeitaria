@@ -25,25 +25,13 @@ export function CartPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8 text-center font-playfair">Meu Carrinho</h1>
-
-      {/* MODIFICAÇÃO 1: Layout Principal 
-        - Trocamos o 'grid' por 'flex' com 'flex-col-reverse lg:flex-row'.
-        - O resumo do pedido agora vem ANTES da lista no código, mas o flex-col-reverse
-          garante que no mobile a lista de itens apareça primeiro.
-      */}
       <div className="flex flex-col-reverse lg:flex-row gap-8">
 
         {/* Lista de Itens do Carrinho */}
         <div className="lg:w-2/3 space-y-4">
           {cartItems.map((item) => (
             <Card key={item.key} className="rounded-2xl overflow-hidden">
-              {/* MODIFICAÇÃO 2: Layout Interno do Card
-                - Usamos um container flex com 'justify-between' para criar duas colunas.
-                - Coluna da Esquerda: Imagem e informações do produto.
-                - Coluna da Direita: Controles de quantidade e botão de remover.
-              */}
               <CardContent className="p-4 flex items-center justify-between gap-4">
-                {/* Coluna da Esquerda: Imagem e Infos */}
                 <div className="flex items-center gap-4">
                   <Image
                     src={item.imagem[0] || "/placeholder.svg"}

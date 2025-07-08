@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/carrinho", "/checkout"],
     },
-    sitemap: "https://confeitaria-ju-montanaro.vercel.app/sitemap.xml",
+    sitemap: "https://jumontanaro.vercel.app/sitemap.xml",
   }
 }

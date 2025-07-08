@@ -47,7 +47,13 @@ const rawProducts = [
   },
   {
     titulo: "Cookie Red Velvet com Brigadeiro de Ninho",
-    imagem: "",
+    imagem: [
+      "produtos/cookie-red-velvet/1.jpg",
+      "produtos/cookie-red-velvet/2.jpg",
+      "produtos/cookie-red-velvet/3.jpg",
+      "produtos/cookie-red-velvet/4.jpg",
+      "produtos/cookie-red-velvet/5.jpg",
+    ],
     descricao: "Massa vermelha intensa com recheio de brigadeiro de leite Ninho.",
     preco: 12.5,
     categoria: "Cookies",
@@ -109,7 +115,13 @@ const rawProducts = [
   },
   {
     titulo: "Cookie de Cacau Black com Ninho",
-    imagem: "",
+    imagem: [
+      "/produtos/cookie-de-cacau-black/1.jpg",
+      "/produtos/cookie-de-cacau-black/2.jpg",
+      "/produtos/cookie-de-cacau-black/3.jpg",
+      "/produtos/cookie-de-cacau-black/4.jpg",
+      "/produtos/cookie-de-cacau-black/5.jpg",
+    ],
     descricao: "Massa de cacau puro com recheio de brigadeiro de leite Ninho.",
     preco: 12.5,
     categoria: "Cookies",
@@ -381,7 +393,7 @@ export const productsData: Product[] = rawProducts.map((product, index) => {
     descricao: product.descricao,
     preco: product.preco,
     categoria: product.categoria,
-    destaque: [4, 3, 5, 14, 16, 31, 37].includes(index + 1),
+    destaque: [2, 7, 14, 15, 16, 17, 18, 19].includes(index + 1),
     variacoes_preco: (product as any).variacoes_preco,
     ingredientes: generateIngredients(product.titulo, product.categoria),
     tags: generateTags(product.titulo, product.descricao),

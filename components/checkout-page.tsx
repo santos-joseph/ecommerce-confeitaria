@@ -52,17 +52,17 @@ export function CheckoutPage() {
 
   const sendWhatsAppMessage = () => {
     const phoneNumber = "5519987382375" // Substitua pelo número de destino
-    let message = `Olá, Ju! Gostaria de fazer um novo pedido:\n\n`
-    message += `Nome: ${customerInfo.name}\n`
-    message += `Modalidade: ${customerInfo.deliveryMethod === "retirada" ? "Retirada" : "Entrega"}\n`
+    let message = `Olá, Ju! Gostaria de fazer um *novo pedido:*\n\n`
+    message += `*Nome:* ${customerInfo.name}\n`
+    message += `*Modalidade:* ${customerInfo.deliveryMethod === "retirada" ? "Retirada" : "Entrega"}\n`
 
     if (customerInfo.deliveryMethod === "entrega") {
-      message += `Endereço: ${customerInfo.address}`
+      message += `*Endereço:* ${customerInfo.address}`
       if (customerInfo.complement) message += `, ${customerInfo.complement}`
       message += `, ${customerInfo.neighborhood} - ${customerInfo.city}\n`
     }
 
-    message += `\nItens do Pedido:\n`
+    message += `\n*Itens do Pedido:*\n`
 
     cartItems.forEach((item) => {
       const price = item.selectedVariation ? item.selectedVariation.preco : item.preco || 0
@@ -73,11 +73,11 @@ export function CheckoutPage() {
       message += ` - R$ ${(price * item.quantity).toFixed(2)}\n`
     })
 
-    message += `\nTotal do Pedido: R$ ${cartTotal.toFixed(2)}\n`
-    message += `Forma de Pagamento: ${customerInfo.paymentMethod === "pix" ? "Pix" : "Cartão de Crédito"}\n`
+    message += `\n*Total do Pedido:* R$ ${cartTotal.toFixed(2)}\n`
+    message += `*Forma de Pagamento:* ${customerInfo.paymentMethod === "pix" ? "Pix" : "Cartão de Crédito"}\n`
 
     if (customerInfo.observations) {
-      message += `\nObservações: ${customerInfo.observations}\n`
+      message += `\n*Observações:* ${customerInfo.observations}\n`
     }
 
     message += `\nObrigado!`

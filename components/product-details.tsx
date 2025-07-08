@@ -1,6 +1,10 @@
+// components/ProductDetails.jsx
+
 "use client"
 
+// NOVO: Importe o usePathname para pegar a rota atual
 import { useState, useEffect, useCallback } from "react"
+import { usePathname } from "next/navigation" // <<< NOVO
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -8,20 +12,19 @@ import {
   ChevronRight,
   Plus,
   Minus,
-  Cookie, // Ícone para Cookies
-  Cake, // Ícone para Bolos
-  Coffee, // Ícone para Acompanhamentos
+  Cookie,
+  Cake,
+  Coffee,
 } from "lucide-react"
 import useEmblaCarousel from "embla-carousel-react"
-import Autoplay from "embla-carousel-autoplay"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useCart } from "@/components/cart-provider"
 import type { Product } from "@/lib/products"
+import ShareButton from "./share-button"
 
-// Mapeamento de categorias para ícones
 const categoryIcons: { [key: string]: React.ElementType } = {
   Cookies: Cookie,
   Bolos: Cake,
@@ -36,8 +39,6 @@ interface ProductDetailsProps {
 export function ProductDetails({ product }: ProductDetailsProps) {
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
-
-  // Tipo corrigido para buscar a definição de variação de dentro do tipo Product
   const [selectedVariation, setSelectedVariation] = useState<
     NonNullable<Product["variacoes_preco"]>[number] | null
   >(
@@ -46,11 +47,18 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       : null,
   )
   const [showNotification, setShowNotification] = useState(false)
-
-  // --- Lógica do Carrossel ---
-  // Removida a tipagem explícita que causava erro
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [selectedIndex, setSelectedIndex] = useState(0)
+
+  // NOVO: Lógica para obter a URL completa da página
+  const pathname = usePathname() // <<< NOVO
+  const [fullUrl, setFullUrl] = useState("") // <<< NOVO
+
+  useEffect(() => { // <<< NOVO
+    if (typeof window !== "undefined") {
+      setFullUrl(window.location.origin + pathname)
+    }
+  }, [pathname])
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
@@ -66,7 +74,6 @@ export function ProductDetails({ product }: ProductDetailsProps) {
     emblaApi.on("select", onSelect)
     return () => { emblaApi.off("select", onSelect) }
   }, [emblaApi, onSelect])
-  // --- Fim da Lógica do Carrossel ---
 
   const handleAddToCart = () => {
     addToCart(product, quantity, selectedVariation ?? undefined)
@@ -75,14 +82,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
   }
 
   const price = selectedVariation ? selectedVariation.preco : product.preco || 0
-
-  // Corrigido para usar `product.imagem` (que é string[]) como definido no seu products.ts
-  const images: string[] =
-    product.imagem && product.imagem.length > 0
-      ? product.imagem
-      : ["/placeholder.svg"]
-
-  // Usando um ícone padrão caso a categoria não seja encontrada no mapeamento
+  const images: string[] = product.imagem && product.imagem.length > 0 ? product.imagem : ["/placeholder.svg"]
   const CategoryIcon = categoryIcons[product.categoria] || Cake
 
   return (
@@ -96,7 +96,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         </Button>
       </div>
       <div className="grid md:grid-cols-2 gap-12 items-start">
-        {/* Coluna da Imagem / Carrossel */}
+        {/* Coluna da Imagem / Carrossel (sem alterações) */}
         <div className="space-y-4">
           <div className="embla relative rounded-3xl overflow-hidden" ref={emblaRef}>
             <div className="embla__container flex">
@@ -126,16 +126,13 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               </>
             )}
           </div>
-
-          {/* Miniaturas */}
           {images.length > 1 && (
             <div className="grid grid-cols-5 gap-2">
               {images.map((imgUrl, index) => (
                 <button
                   key={index}
                   onClick={() => scrollTo(index)}
-                  className={`overflow-hidden rounded-3xl border-2 transition-colors ${index === selectedIndex ? "border-pink-300" : "border-transparent"
-                    }`}
+                  className={`overflow-hidden rounded-3xl border-2 transition-colors ${index === selectedIndex ? "border-pink-300" : "border-transparent"}`}
                 >
                   <Image
                     src={imgUrl}
@@ -172,13 +169,8 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 {product.variacoes_preco.map(variacao => (
                   <Button
                     key={variacao.tamanho}
-                    variant={
-                      selectedVariation?.tamanho === variacao.tamanho ? "default" : "outline"
-                    }
-                    className={`rounded-full px-4 py-2 text-sm transition-colors ${selectedVariation?.tamanho === variacao.tamanho
-                      ? "bg-pink-500 text-white border-pink-500"
-                      : "bg-white text-pink-500 border-gray-300"
-                      }`}
+                    variant={selectedVariation?.tamanho === variacao.tamanho ? "default" : "outline"}
+                    className={`rounded-full px-4 py-2 text-sm transition-colors ${selectedVariation?.tamanho === variacao.tamanho ? "bg-pink-500 text-white border-pink-500" : "bg-white text-pink-500 border-gray-300"}`}
                     onClick={() => setSelectedVariation(variacao)}
                   >
                     {variacao.tamanho} - R$ {variacao.preco.toFixed(2)}
@@ -192,19 +184,27 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             R$ {price.toFixed(2)}
           </div>
 
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center border border-gray-300 rounded-full">
-              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={quantity <= 1}>
-                <Minus className="h-4 w-4" />
-              </Button>
-              <span className="px-4 text-lg font-semibold">{quantity}</span>
-              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setQuantity(quantity + 1)}>
-                <Plus className="h-4 w-4" />
+          {/* NOVO: Container para agrupar todos os botões de ação */}
+          <div className="space-y-4 pt-2">
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center border border-gray-300 rounded-full">
+                <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setQuantity(Math.max(1, quantity - 1))} disabled={quantity <= 1}>
+                  <Minus className="h-4 w-4" />
+                </Button>
+                <span className="px-4 text-lg font-semibold">{quantity}</span>
+                <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setQuantity(quantity + 1)}>
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
+              <Button onClick={handleAddToCart} size="lg" className="flex-1 rounded-full bg-pink-500 hover:bg-pink-600 text-white shadow-lg transition-transform transform hover:scale-105">
+                Adicionar ao Carrinho
               </Button>
             </div>
-            <Button onClick={handleAddToCart} size="lg" className="flex-1 rounded-full bg-pink-500 hover:bg-pink-600 text-white shadow-lg transition-transform transform hover:scale-105">
-              Adicionar ao Carrinho
-            </Button>
+
+            {/* ✨ NOVO: Botão de compartilhar renderizado aqui ✨ */}
+            {fullUrl && (
+              <ShareButton productTitle={product.titulo} productUrl={fullUrl} />
+            )}
           </div>
         </div>
       </div>
